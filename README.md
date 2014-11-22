@@ -42,3 +42,9 @@ There are not a lot of features added yet. This is to get started and I welcome 
 4. Commit your changes (`git commit -am 'Add some feature'`)
 5. Push to the branch (`git push origin my-new-feature`)
 6. Create a new Pull Request
+
+### Issue
+
+Pull requests from forks will most likely have builds that fail because of private keys being used for OpenSauce. Please commit with a message that includes `[skip ci]` and I'll checkout and push myself to see if the pull request passes build before merging. This message should tell Travis to skip the build. More information
+- http://docs.travis-ci.com/user/pull-requests/
+- https://github.com/travis-ci/travis-ci/issues/1946
