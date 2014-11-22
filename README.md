@@ -1,6 +1,6 @@
-# Watir::Browser::Quora
+# Watir::Browser::Quora [![Build Status](https://travis-ci.org/kratsg/quora-webdriver.svg?branch=master)](https://travis-ci.org/kratsg/quora-webdriver) [![Gem Version](https://badge.fury.io/rb/quora-webdriver.svg)](http://badge.fury.io/rb/quora-webdriver)
 
-Interact with Quora via Command Line!
+Interact with Quora via Command Line! This is an extension of [watir-webdriver](https://github.com/watir/watir-webdriver) by providing `browser.quora` options operating on a browser. **Caveat**: seems to only work with the Chromedriver (see [#usage](#usage) below).
 
 ## Installation
 
