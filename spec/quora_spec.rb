@@ -1,30 +1,37 @@
-require 'rspec'
-require 'quora-webdriver'
+require 'spec_helper'
 
-browser = Watir::Browser.new :phantomjs
-quora_login_html = "file://#{File.expand_path("quora_login.html",File.dirname(__FILE__))}"
+browser = $browser
 
 RSpec.configure do |config|
-  config.before(:each) { @browser = browser }
-  config.after(:suite) { @browser.close unless @browser.nil? }
+  config.before(:all) { @browser = Watir::Browser.new(*$browser_params) }
+  config.after(:all) { @browser.close unless @browser.nil? }
 end
 
-describe "a quora login page" do
-  before(:each) do
-    @browser.goto(quora_login_html)
+context "when quora.com is accessed" do
+  before(:all) do
+    @browser.goto @browser.quora.base_url
   end
 
-  describe "that we should have opened it" do
-    it "should not return an empty page" do
-      expect(@browser.text).not_to be_empty
-    end
-    it "should have found the local html file" do
-      expect(@browser.text).not_to include("This webpage is not found")
-    end
-    it "should have loaded the html file" do
-      expect(@browser.text).to include("Sign up to read Quora")
-    end
+  context "the text" do
+    subject { @browser.text }
+    it { is_expected.not_to be_empty }
+    it { is_expected.to include("Sign up to read Quora") }
+  end
 
+  context "add question div" do
+    subject { @browser.quora.get_add_question_div }
+    it { is_expected.not_to exist }
+  end
+  
+  context "login box" do
+    subject { @browser.quora.get_login_email_text }
+    it { is_expected.to exist }
+
+    subject { @browser.quora.get_login_password_text }
+    it { is_expected.to exist }
+
+    subject { @browser.quora.get_login_submit_button }
+    it { is_expected.to exist }
   end
 
 end

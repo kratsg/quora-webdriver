@@ -1,7 +1,12 @@
 language: ruby
 rvm:
-  - 2.1.4
-before_install:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-
+- 2.1.4
+addons:
+  sauce_connect: true
+env:
+  global:
+  - secure: gfxUSYcEBbqinazH0kCSvPYNvCeRz25CiGvIKvbdJCuOTsu+umIVBvUSvkH2OQ4806KHFXnIxFb2qVTUM07H5MHt5t1+g8SJkrND0+puHoJE0sesw/3H9jUj7O3wLbYejeteIe1maPSL8K38oT0BeCBXzfM530lTmUuvO+6g4E8=
+  - secure: L0CPB1Wzaq5x2nFO4nP5vE0UD+ApLeABs4g2BrwgEWV7MY2la9smPiPWJS0mJ3OpqYJDMo+8gAX/SnoZ0+/K4tPPqtJK2v4kp136Lu7gVzUcZgrUqZTUBjzgmppkvH6Ybafx8BCPRDK8MolP00tB9HCU3uFohfmLtpK9ppW/rvs=
+  matrix:
+  - BROWSER='chrome:38.0:Mac 10.9'
+  - BROWSER='chrome:38.0:Mac 10.8'

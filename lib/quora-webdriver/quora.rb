@@ -10,10 +10,6 @@ module Watir
         @browser = browser
         @base_url = "https://www.quora.com/"
         @logged_in = false
-        @email_box_selector = {:name=>"email", :class=>/header_login_text_box/}
-        @password_box_selector = {:name=>"password", :class=>/header_login_text_box/}
-        @login_button_selector = {:value=>"Login"}
-        @add_question_selector = {:class=>/inner/, :text=>/Add Question/}
       end
 
       def user
@@ -22,6 +18,22 @@ module Watir
 
       def stringify
         @user.to_s.gsub("_","-")
+      end
+
+      def get_login_email_text
+        @browser.text_field({:name=>"email", :class=>/header_login_text_box/})
+      end
+
+      def get_login_password_text
+        @browser.text_field({:name=>"password", :class=>/header_login_text_box/})
+      end
+
+      def get_login_submit_button
+        @browser.button({:value=>"Login"})
+      end
+
+      def get_add_question_div
+        @browser.div({:class=>/inner/, :text=>/Add Question/})
       end
 
       def login(choice='0')
@@ -36,15 +48,15 @@ module Watir
         when '2'
           email = ask("Enter email: "){ |x| x.echo = true }
           password = ask("Enter password: "){ |x| x.echo = "*" }
-          email_box = @browser.text_field(@email_box_selector)
-          password_box = @browser.text_field(@password_box_selector)
+          email_box = get_login_email_text
+          password_box = get_login_password_text
           unless email_box.exist? and password_box.exist? then
             puts "There was an error getting the login boxes. Please login manually. Report this error to someone important."
             self.login('1')
           end
           email_box.set email
           password_box.set password
-          @browser.button(@login_button_selector).click
+          get_login_submit_button.click
         end
 
         self.verify_login
@@ -55,7 +67,7 @@ module Watir
         login_count_checks = 0
         until @logged_in || (login_count_checks >= 60) do
           puts "\t Checking if logged in"
-          @logged_in = @browser.div(@add_question_selector).exists?
+          @logged_in = get_add_question_div.exists?
           login_count_checks+=1
           sleep 1
         end
@@ -75,6 +87,11 @@ module Watir
         unless login.nil? then
           self.login
         end
+      end
+
+      def home
+        @url = "#{@base_url}"
+        self.goto :login
       end
 
       def answers
