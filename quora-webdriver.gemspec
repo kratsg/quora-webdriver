@@ -5,7 +5,7 @@ require 'quora-webdriver/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "quora-webdriver"
-  spec.version       = Watir::Browser::Quora::VERSION
+  spec.version       = QuoraWebDriver::VERSION
   spec.authors       = ["Giordon Stark"]
   spec.email         = ["kratsg@gmail.com"]
   spec.summary       = %q{Interact with Quora via Command Line}
