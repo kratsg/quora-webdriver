@@ -1,6 +1,6 @@
 # Watir::Browser::Quora
 
-TODO: Write a gem description
+Interact with Quora via Command Line!
 
 ## Installation
 
@@ -20,11 +20,23 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+You can get started up and easily using the `chromedriver`
+- https://sites.google.com/a/chromium.org/chromedriver/
+- http://brewformulas.org/Chromedriver
+
+```
+require 'quora-webdriver'
+b = Watir::Browser.new :chrome
+b.quora.content :answers
+```
+
+## Reporting Issues
+[File an issue.](https://github.com/kratsg/quora-webdriver/issues/new)
 
 ## Contributing
+There are not a lot of features added yet. This is to get started and I welcome others to help flesh this out more. Contact [Giordon Stark](https://github.com/kratsg) with requests or on [Quora](https://www.quora.com/Giordon-Stark/).
 
-1. Fork it ( https://github.com/[my-github-username]/quora-webdriver/fork )
+1. Fork it ( https://github.com/kratsg/quora-webdriver/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
