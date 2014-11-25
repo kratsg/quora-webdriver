@@ -11,8 +11,12 @@ module Watir
 
       attr_reader :stats
       def stats
-        @Stats ||= Stats.new(self)
+        @Stats ||= Stats.new(@browser)
       end
+
+      class Stats
+        include QuoraWebDriver::StatsModule
+      end # Stats
     end # Quora
 
   end # Browser

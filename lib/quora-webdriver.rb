@@ -2,9 +2,9 @@ require "watir-webdriver"
 require "watir-scroll"
 require "highline/import"
 
-require "quora-webdriver/quora"
-require "quora-webdriver/version"
-require "quora-webdriver/stats"
+require_relative "quora-webdriver/quora"
+require_relative "quora-webdriver/version"
+require_relative "quora-webdriver/stats"
 
-require "quora-webdriver/base"
+require_relative "quora-webdriver/base"
 
